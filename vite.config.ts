@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://priyesh-raj.me
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({  base: /priyeshraj/, }) => ({
   server: {
     host: "::",
     port: 8080,
