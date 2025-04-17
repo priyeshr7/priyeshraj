@@ -4,11 +4,12 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://priyesh-raj.me
-export default defineConfig(({  base: /priyeshraj/, }) => ({
+export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
   },
+  base: mode === 'production' ? '/priyeshraj/' : '/',
   plugins: [
     react(),
     mode === 'development' &&
