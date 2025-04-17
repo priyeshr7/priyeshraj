@@ -9,6 +9,7 @@ import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+const basePath = '/priyeshraj';
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
