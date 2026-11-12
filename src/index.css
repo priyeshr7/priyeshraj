@@ -144,8 +144,10 @@ button { color: inherit; font: inherit; }
 .gallery-buttons button:not(:disabled):hover { color: var(--bg); background: var(--accent); border-color: var(--accent); }
 .gallery-buttons button:disabled { opacity: .35; cursor: not-allowed; }
 .gallery-progress, .gallery-dots { display: flex; align-items: center; }
-.gallery-dots { gap: 9px; }
-.gallery-dot { width: 9px; height: 9px; padding: 0; background: #4b5563; border: 0; border-radius: 50%; cursor: pointer; transition: transform .2s, background .2s, box-shadow .2s; }
+.gallery-progress { min-width: 0; max-width: min(58vw, 560px); overflow: hidden; }
+.gallery-dots { gap: 9px; padding: 8px 5px; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; }
+.gallery-dots::-webkit-scrollbar { display: none; }
+.gallery-dot { flex: 0 0 auto; width: 9px; height: 9px; padding: 0; background: #4b5563; border: 0; border-radius: 50%; cursor: pointer; transition: transform .2s, background .2s, box-shadow .2s; }
 .gallery-dot:hover { background: #9ca3af; transform: scale(1.15); }
 .gallery-dot--active { background: var(--accent); box-shadow: 0 0 0 4px #ff572226; transform: scale(1.1); }
 
@@ -212,7 +214,7 @@ footer > p { color: #6b7280; font: 400 9px/1 "DM Mono", monospace; text-transfor
   .travel-frame figcaption { align-items: flex-start; flex-direction: column; }
   .gallery-controls { margin-top: 22px; flex-wrap: wrap; }
   .gallery-buttons button { width: 48px; height: 48px; }
-  .gallery-progress { width: 100%; justify-content: flex-end; }
+  .gallery-progress { width: 100%; max-width: 100%; justify-content: flex-end; }
   .contact-section { padding: 95px 0; }
   footer { padding: 30px 16px; gap: 20px; flex-wrap: wrap; }
   footer > p { order: 3; width: 100%; }

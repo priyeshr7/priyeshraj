@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowDown, ArrowUpRight, Award, BrainCircuit, CheckCircle2, ChevronLeft,
   ChevronRight, Cloud, Code2, Database, Download, Flag, Github, Linkedin,
-  MapPin, Menu, Newspaper, Plane, Trophy, X,
+  MapPin, Menu, Newspaper, Pause, Plane, Play, Trophy, X,
 } from "lucide-react";
 
 type Project = { name: string; description: string; language: string; html_url: string; pushed_at: string };
@@ -47,8 +47,14 @@ const skillGroups = [
   { icon: BrainCircuit, title: "ML & inference", text: "Predictive models, local RAG, generative AI foundations, and useful inference workflows." },
 ];
 
-// Add future trip photographs here. The carousel, count, arrows, and dots update automatically.
+// Add future trip photographs here. The infinite loop, autoplay, arrows, and dots update automatically.
 const galleryItems: GalleryItem[] = [
+  {
+    src: "assets/travel-24.6160743-72.7661412.jpeg",
+    alt: "Sunlight over a rugged mountain landscape",
+    location: "24.6160743, 72.7661412",
+    note: "From the travel archive",
+  },
   {
     src: "assets/travel-18.9224039-72.8348735.jpeg",
     alt: "Historic stone architecture against a clear blue sky",
@@ -92,12 +98,6 @@ const galleryItems: GalleryItem[] = [
     note: "From the travel archive",
   },
   {
-    src: "assets/travel-24.6160743-72.7661412.jpeg",
-    alt: "Sunlight over a rugged mountain landscape",
-    location: "24.6160743, 72.7661412",
-    note: "From the travel archive",
-  },
-  {
     src: "assets/travel-28.5543027-77.2611470.jpeg",
     alt: "The Lotus Temple framed by gardens",
     location: "28.5543027, 77.2611470",
@@ -111,6 +111,8 @@ const galleryItems: GalleryItem[] = [
   },
 ];
 
+const loopedGalleryItems = [galleryItems[galleryItems.length - 1], ...galleryItems, galleryItems[0]];
+
 const formatName = (name: string) => name.replace(/-+$/, "").replace(/[_-]/g, " ");
 const formatDate = (date: string) => new Intl.DateTimeFormat("en", { month: "short", year: "numeric" }).format(new Date(date));
 
@@ -118,8 +120,14 @@ const Index = () => {
   const [projects, setProjects] = useState(fallbackProjects);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showAllCredentials, setShowAllCredentials] = useState(false);
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [galleryPosition, setGalleryPosition] = useState(1);
+  const [galleryTransition, setGalleryTransition] = useState(true);
+  const [galleryMoving, setGalleryMoving] = useState(false);
+  const [galleryPaused, setGalleryPaused] = useState(false);
+  const [galleryInteracting, setGalleryInteracting] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
+  const activeDotRef = useRef<HTMLButtonElement>(null);
+  const activeSlide = (galleryPosition - 1 + galleryItems.length) % galleryItems.length;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -136,10 +144,56 @@ const Index = () => {
     return () => controller.abort();
   }, []);
 
+  useEffect(() => {
+    if (galleryPaused || galleryInteracting || galleryMoving || galleryItems.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const rotation = window.setInterval(() => {
+      setGalleryTransition(true);
+      setGalleryMoving(true);
+      setGalleryPosition((position) => position + 1);
+    }, 5000);
+    return () => window.clearInterval(rotation);
+  }, [galleryPaused, galleryInteracting, galleryMoving]);
+
+  useEffect(() => {
+    const activeDot = activeDotRef.current;
+    const dotRail = activeDot?.parentElement;
+    if (!activeDot || !dotRail) return;
+    dotRail.scrollTo({
+      left: activeDot.offsetLeft - (dotRail.clientWidth / 2) + (activeDot.clientWidth / 2),
+      behavior: "smooth",
+    });
+  }, [activeSlide]);
+
   const closeMenu = () => setMenuOpen(false);
   const visibleCredentials = showAllCredentials ? certifications : certifications.slice(0, 5);
-  const showPreviousSlide = () => setActiveSlide((slide) => (slide - 1 + galleryItems.length) % galleryItems.length);
-  const showNextSlide = () => setActiveSlide((slide) => (slide + 1) % galleryItems.length);
+  const showPreviousSlide = () => {
+    if (galleryMoving) return;
+    setGalleryTransition(true);
+    setGalleryMoving(true);
+    setGalleryPosition((position) => position - 1);
+  };
+  const showNextSlide = () => {
+    if (galleryMoving) return;
+    setGalleryTransition(true);
+    setGalleryMoving(true);
+    setGalleryPosition((position) => position + 1);
+  };
+  const showGallerySlide = (index: number) => {
+    if (galleryMoving || index === activeSlide) return;
+    setGalleryTransition(true);
+    setGalleryMoving(true);
+    setGalleryPosition(index + 1);
+  };
+  const handleGalleryTransitionEnd = () => {
+    if (galleryPosition === 0) {
+      setGalleryTransition(false);
+      setGalleryPosition(galleryItems.length);
+    } else if (galleryPosition === galleryItems.length + 1) {
+      setGalleryTransition(false);
+      setGalleryPosition(1);
+    }
+    setGalleryMoving(false);
+  };
   const handleTouchEnd = (endX: number) => {
     if (touchStart === null) return;
     const distance = touchStart - endX;
@@ -213,13 +267,13 @@ const Index = () => {
 
         <section className="gallery-section" id="gallery">
           <div className="gallery-heading"><p className="eyebrow eyebrow--light"><span /> Field notes</p><h2>Places worth remembering.</h2><p>A small visual log from the road—one frame at a time.</p></div>
-          <div className="gallery-carousel" aria-roledescription="carousel" aria-label="Travel photographs" tabIndex={0} onKeyDown={(event) => { if (event.key === "ArrowLeft") showPreviousSlide(); if (event.key === "ArrowRight") showNextSlide(); }}>
+          <div className="gallery-carousel" aria-roledescription="carousel" aria-label="Travel photographs" tabIndex={0} onMouseEnter={() => setGalleryInteracting(true)} onMouseLeave={() => setGalleryInteracting(false)} onFocus={() => setGalleryInteracting(true)} onBlur={() => setGalleryInteracting(false)} onKeyDown={(event) => { if (event.key === "ArrowLeft") showPreviousSlide(); if (event.key === "ArrowRight") showNextSlide(); }}>
             <div className="gallery-viewport" onTouchStart={(event) => setTouchStart(event.touches[0].clientX)} onTouchEnd={(event) => handleTouchEnd(event.changedTouches[0].clientX)}>
-              <div className="gallery-track" style={{ transform: `translateX(-${activeSlide * 100}%)` }}>
-                {galleryItems.map((item, index) => (
-                  <figure className="travel-frame" key={item.src} aria-hidden={activeSlide !== index}>
-                    <img src={`${import.meta.env.BASE_URL}${item.src}`} alt={item.alt} loading={index === 0 ? "eager" : "lazy"} decoding="async" />
-                    <figcaption><div><MapPin size={17} /><span>{item.location}</span></div><p>{item.note} · Frame {String(index + 1).padStart(3, "0")}</p></figcaption>
+              <div className="gallery-track" style={{ transform: `translateX(-${galleryPosition * 100}%)`, transition: galleryTransition ? undefined : "none" }} onTransitionEnd={handleGalleryTransitionEnd}>
+                {loopedGalleryItems.map((item, index) => (
+                  <figure className="travel-frame" key={`${item.src}-${index}`} aria-hidden={galleryPosition !== index}>
+                    <img src={`${import.meta.env.BASE_URL}${item.src}`} alt={item.alt} loading={index === 1 ? "eager" : "lazy"} decoding="async" />
+                    <figcaption><div><MapPin size={17} /><span>{item.location}</span></div><p>{item.note}</p></figcaption>
                   </figure>
                 ))}
               </div>
@@ -227,10 +281,11 @@ const Index = () => {
             <div className="gallery-controls">
               <div className="gallery-buttons">
                 <button type="button" onClick={showPreviousSlide} disabled={galleryItems.length < 2} aria-label="Previous photograph"><ChevronLeft /></button>
+                <button type="button" onClick={() => setGalleryPaused((paused) => !paused)} aria-label={galleryPaused ? "Resume automatic gallery rotation" : "Pause automatic gallery rotation"}>{galleryPaused ? <Play /> : <Pause />}</button>
                 <button type="button" onClick={showNextSlide} disabled={galleryItems.length < 2} aria-label="Next photograph"><ChevronRight /></button>
               </div>
               <div className="gallery-progress" aria-label={`Photograph ${activeSlide + 1} of ${galleryItems.length}`}>
-                <div className="gallery-dots">{galleryItems.map((item, index) => <button type="button" className={activeSlide === index ? "gallery-dot gallery-dot--active" : "gallery-dot"} onClick={() => setActiveSlide(index)} aria-label={`Show photograph ${index + 1}`} key={item.src} />)}</div>
+                <div className="gallery-dots">{galleryItems.map((item, index) => <button ref={activeSlide === index ? activeDotRef : undefined} type="button" className={activeSlide === index ? "gallery-dot gallery-dot--active" : "gallery-dot"} onClick={() => showGallerySlide(index)} aria-label={`Show photograph ${index + 1}`} key={item.src} />)}</div>
               </div>
             </div>
           </div>
