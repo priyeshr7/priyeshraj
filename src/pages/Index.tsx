@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import {
-  ArrowDown, ArrowUpRight, Award, BrainCircuit, CheckCircle2, Cloud, Code2,
-  Database, Download, Flag, Github, Linkedin, MapPin, Menu, Newspaper, Plane,
-  Trophy, X,
+  ArrowDown, ArrowUpRight, Award, BrainCircuit, CheckCircle2, ChevronLeft,
+  ChevronRight, Cloud, Code2, Database, Download, Flag, Github, Linkedin,
+  MapPin, Menu, Newspaper, Plane, Trophy, X,
 } from "lucide-react";
 
 type Project = { name: string; description: string; language: string; html_url: string; pushed_at: string };
 type Certification = { title: string; issuer: string; issued: string; expires?: string; id?: string; featured?: boolean };
+type GalleryItem = { src: string; alt: string; location: string; note: string };
 
 const fallbackProjects: Project[] = [
   { name: "LocalRAG_Bot", description: "A private, local-first research assistant for PDF, CSV, and TXT files. Select sources, ask questions, and keep every document on your machine.", language: "Python", html_url: "https://github.com/priyeshr7/LocalRAG_Bot", pushed_at: "2026-11-04T06:39:22Z" },
@@ -46,6 +47,16 @@ const skillGroups = [
   { icon: BrainCircuit, title: "ML & inference", text: "Predictive models, local RAG, generative AI foundations, and useful inference workflows." },
 ];
 
+// Add future trip photographs here. The carousel, count, arrows, and dots update automatically.
+const galleryItems: GalleryItem[] = [
+  {
+    src: "assets/travel-24.6160743-72.7661412.jpeg",
+    alt: "Sunlight over a rugged mountain landscape",
+    location: "24.6160743, 72.7661412",
+    note: "From the travel archive",
+  },
+];
+
 const formatName = (name: string) => name.replace(/-+$/, "").replaceAll("_", " ").replaceAll("-", " ");
 const formatDate = (date: string) => new Intl.DateTimeFormat("en", { month: "short", year: "numeric" }).format(new Date(date));
 
@@ -53,6 +64,8 @@ const Index = () => {
   const [projects, setProjects] = useState(fallbackProjects);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showAllCredentials, setShowAllCredentials] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -70,7 +83,16 @@ const Index = () => {
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
-  const visibleCredentials = showAllCredentials ? certifications : certifications.slice(0, 6);
+  const visibleCredentials = showAllCredentials ? certifications : certifications.slice(0, 5);
+  const showPreviousSlide = () => setActiveSlide((slide) => (slide - 1 + galleryItems.length) % galleryItems.length);
+  const showNextSlide = () => setActiveSlide((slide) => (slide + 1) % galleryItems.length);
+  const handleTouchEnd = (endX: number) => {
+    if (touchStart === null) return;
+    const distance = touchStart - endX;
+    if (distance > 50) showNextSlide();
+    if (distance < -50) showPreviousSlide();
+    setTouchStart(null);
+  };
 
   return (
     <div className="site-shell">
@@ -137,10 +159,28 @@ const Index = () => {
 
         <section className="gallery-section" id="gallery">
           <div className="gallery-heading"><p className="eyebrow eyebrow--light"><span /> Field notes</p><h2>Places worth remembering.</h2><p>A small visual log from the road—one frame at a time.</p></div>
-          <figure className="travel-frame">
-            <img src={`${import.meta.env.BASE_URL}assets/travel-24.6160743-72.7661412.jpeg`} alt="Sunlight over a rugged mountain landscape" />
-            <figcaption><div><MapPin size={17} /><span>24.6160743, 72.7661412</span></div><p>From the travel archive · Frame 001</p></figcaption>
-          </figure>
+          <div className="gallery-carousel" aria-roledescription="carousel" aria-label="Travel photographs">
+            <div className="gallery-viewport" onTouchStart={(event) => setTouchStart(event.touches[0].clientX)} onTouchEnd={(event) => handleTouchEnd(event.changedTouches[0].clientX)}>
+              <div className="gallery-track" style={{ transform: `translateX(-${activeSlide * 100}%)` }}>
+                {galleryItems.map((item, index) => (
+                  <figure className="travel-frame" key={item.src} aria-hidden={activeSlide !== index}>
+                    <img src={`${import.meta.env.BASE_URL}${item.src}`} alt={item.alt} />
+                    <figcaption><div><MapPin size={17} /><span>{item.location}</span></div><p>{item.note} · Frame {String(index + 1).padStart(3, "0")}</p></figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+            <div className="gallery-controls">
+              <div className="gallery-buttons">
+                <button type="button" onClick={showPreviousSlide} disabled={galleryItems.length < 2} aria-label="Previous photograph"><ChevronLeft /></button>
+                <button type="button" onClick={showNextSlide} disabled={galleryItems.length < 2} aria-label="Next photograph"><ChevronRight /></button>
+              </div>
+              <div className="gallery-progress" aria-label={`Photograph ${activeSlide + 1} of ${galleryItems.length}`}>
+                <span>{String(activeSlide + 1).padStart(2, "0")} / {String(galleryItems.length).padStart(2, "0")}</span>
+                <div className="gallery-dots">{galleryItems.map((item, index) => <button type="button" className={activeSlide === index ? "gallery-dot gallery-dot--active" : "gallery-dot"} onClick={() => setActiveSlide(index)} aria-label={`Show photograph ${index + 1}`} key={item.src} />)}</div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section className="contact-section" id="contact"><div><p className="eyebrow"><span /> Let’s build something</p><h2>Have an interesting problem?</h2></div><div className="contact-actions"><a className="button button--dark" href="https://www.linkedin.com/in/priyeshraj" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight size={17} /></a><p>Open to thoughtful cloud, data, and machine-learning projects—and always happy to learn in public.</p></div></section>
