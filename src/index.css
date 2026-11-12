@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
-:root { --ink:#13120f; --paper:#f3f0e8; --electric:#3157f5; --acid:#d9ff43; --muted:#68675f; --line:#cfccc1; }
+:root { --ink:#13120f; --paper:#f3f0e8; --electric:#660066; --acid:#d9ff43; --muted:#68675f; --line:#cfccc1; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body { margin:0; min-width:320px; background:var(--paper); color:var(--ink); font-family:"Manrope",sans-serif; -webkit-font-smoothing:antialiased; }
