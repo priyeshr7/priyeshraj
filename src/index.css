@@ -169,8 +169,8 @@ footer>p { color:var(--muted); font:400 10px/1 "DM Mono",monospace; text-transfo
   .gallery-heading { grid-template-columns:1fr; } .gallery-heading .eyebrow { grid-column:auto; }
   .gallery-heading>p:last-child { margin:0; }
   .travel-frame { border-width:6px; } .travel-frame figcaption { align-items:flex-start; flex-direction:column; }
-  .gallery-controls { margin-top:22px; } .gallery-buttons button { width:48px; height:48px; }
-  .gallery-progress { gap:12px; } .gallery-dot { width:18px; } .gallery-dot--active { width:32px; }
+  .gallery-controls { margin-top:22px; flex-wrap:wrap; } .gallery-buttons button { width:48px; height:48px; }
+  .gallery-progress { width:100%; justify-content:space-between; gap:12px; } .gallery-dot { width:18px; } .gallery-dot--active { width:32px; }
   .contact-section { padding:90px 0; } footer { padding:30px 16px; gap:20px; flex-wrap:wrap; } footer>p { order:3; width:100%; }
 }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; } }

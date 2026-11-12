@@ -50,9 +50,63 @@ const skillGroups = [
 // Add future trip photographs here. The carousel, count, arrows, and dots update automatically.
 const galleryItems: GalleryItem[] = [
   {
+    src: "assets/travel-18.9224039-72.8348735.jpeg",
+    alt: "Historic stone architecture against a clear blue sky",
+    location: "18.9224039, 72.8348735",
+    note: "From the travel archive",
+  },
+  {
+    src: "assets/travel-18.9459839-72.8214078.jpeg",
+    alt: "Mumbai skyline viewed across the water",
+    location: "18.9459839, 72.8214078",
+    note: "From the travel archive",
+  },
+  {
+    src: "assets/travel-19.0637020-72.8674835.jpeg",
+    alt: "A colorful circular artwork with flowers and city forms",
+    location: "19.0637020, 72.8674835",
+    note: "From the travel archive",
+  },
+  {
+    src: "assets/travel-19.1264727-72.8154463.jpeg",
+    alt: "Sunset over the sea and a sandy shoreline",
+    location: "19.1264727, 72.8154463",
+    note: "From the travel archive",
+  },
+  {
+    src: "assets/travel-22.4144020-78.4404919.jpeg",
+    alt: "Cloud-covered mountain ridges",
+    location: "22.4144020, 78.4404919",
+    note: "From the travel archive",
+  },
+  {
+    src: "assets/travel-23.2262151-77.4357253.jpeg",
+    alt: "An illuminated highway at night",
+    location: "23.2262151, 77.4357253",
+    note: "From the travel archive",
+  },
+  {
+    src: "assets/travel-23.2297520-77.4834612.jpeg",
+    alt: "A faint rainbow under warm evening clouds",
+    location: "23.2297520, 77.4834612",
+    note: "From the travel archive",
+  },
+  {
     src: "assets/travel-24.6160743-72.7661412.jpeg",
     alt: "Sunlight over a rugged mountain landscape",
     location: "24.6160743, 72.7661412",
+    note: "From the travel archive",
+  },
+  {
+    src: "assets/travel-28.5543027-77.2611470.jpeg",
+    alt: "The Lotus Temple framed by gardens",
+    location: "28.5543027, 77.2611470",
+    note: "From the travel archive",
+  },
+  {
+    src: "assets/travel-29.9567873-78.1715655.jpeg",
+    alt: "A historic clock tower viewed from below",
+    location: "29.9567873, 78.1715655",
     note: "From the travel archive",
   },
 ];
@@ -164,7 +218,7 @@ const Index = () => {
               <div className="gallery-track" style={{ transform: `translateX(-${activeSlide * 100}%)` }}>
                 {galleryItems.map((item, index) => (
                   <figure className="travel-frame" key={item.src} aria-hidden={activeSlide !== index}>
-                    <img src={`${import.meta.env.BASE_URL}${item.src}`} alt={item.alt} />
+                    <img src={`${import.meta.env.BASE_URL}${item.src}`} alt={item.alt} loading={index === 0 ? "eager" : "lazy"} decoding="async" />
                     <figcaption><div><MapPin size={17} /><span>{item.location}</span></div><p>{item.note} · Frame {String(index + 1).padStart(3, "0")}</p></figcaption>
                   </figure>
                 ))}
