@@ -34,10 +34,10 @@ const certifications: Certification[] = [
 ];
 
 const interests = [
-  { icon: Trophy, label: "Chess", detail: "Strategy, patience, and finding the move that changes the position." },
-  { icon: Flag, label: "Formula 1", detail: "Following the racing, engineering, team calls, and every shifting storyline." },
-  { icon: Newspaper, label: "Tech & trends", detail: "Keeping up with what is changing across cloud, AI, security, and software." },
-  { icon: Plane, label: "Travel", detail: "New places, long views, and photographs worth bringing back." },
+  { icon: Trophy, label: "Chess", detail: "Strategy, patience, and finding the move that changes the position.", image: "assets/interest-chess.jpeg", variant: "chess" },
+  { icon: Flag, label: "Formula 1", detail: "Following the racing, engineering, team calls, and every shifting storyline.", image: "assets/interest-f1-clean.png", variant: "f1" },
+  { icon: Newspaper, label: "Tech & trends", detail: "Keeping up with what is changing across cloud, AI, security, and software.", image: "assets/interest-tech.svg", variant: "tech" },
+  { icon: Plane, label: "Travel", detail: "New places, long views, and photographs worth bringing back.", image: "assets/interest-travel.jpeg", variant: "travel" },
 ];
 
 const skillGroups = [
@@ -262,7 +262,7 @@ const Index = () => {
 
         <section className="life-section" id="life">
           <div className="section-heading"><div><p className="eyebrow"><span /> Off the clock</p><h2>A little more personal.</h2></div><p>Good work is only one part of a good life. These are the things that keep me curious.</p></div>
-          <div className="interest-grid">{interests.map(({ icon: Icon, label, detail }) => <article className="interest-card" key={label}><Icon /><h3>{label}</h3><p>{detail}</p></article>)}</div>
+          <div className="interest-grid">{interests.map(({ icon: Icon, label, detail, image, variant }) => <article className={`interest-card interest-card--${variant}`} key={label}><img className="interest-card__image" src={`${import.meta.env.BASE_URL}${image}`} alt="" loading="lazy" decoding="async" /><span className="interest-card__shade" aria-hidden="true" /><div className="interest-card__content"><span className="interest-card__icon"><Icon /></span><div><h3>{label}</h3><p>{detail}</p></div></div></article>)}</div>
         </section>
 
         <section className="gallery-section" id="gallery">

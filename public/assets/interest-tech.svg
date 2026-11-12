@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" role="img" aria-labelledby="title desc">
+  <title id="title">Abstract technology circuit</title>
+  <desc id="desc">A dark field of connected circuit paths, nodes, and data signals.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101827"/>
+      <stop offset="1" stop-color="#05070c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="65%" cy="25%" r="70%">
+      <stop offset="0" stop-color="#ff5722" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#ff5722" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0V42" fill="none" stroke="#cbd5e1" stroke-opacity=".055"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="700" fill="url(#background)"/>
+  <rect width="900" height="700" fill="url(#grid)"/>
+  <rect width="900" height="700" fill="url(#glow)"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M95 180h165l65 65h118l83-83h170" stroke="#94a3b8" stroke-opacity=".44" stroke-width="3"/>
+    <path d="M80 360h142l72-72h150l90 90h275" stroke="#f3f4f6" stroke-opacity=".42" stroke-width="4"/>
+    <path d="M155 530h175l82-82h112l54 54h170" stroke="#94a3b8" stroke-opacity=".34" stroke-width="3"/>
+    <path d="M620 100v125l-70 70v118" stroke="#ff5722" stroke-opacity=".86" stroke-width="5"/>
+    <path d="M370 120v80l52 52v95" stroke="#ff5722" stroke-opacity=".64" stroke-width="4"/>
+  </g>
+  <g fill="#ff5722">
+    <circle cx="95" cy="180" r="8"/><circle cx="620" cy="100" r="10"/><circle cx="809" cy="360" r="8"/>
+    <circle cx="155" cy="530" r="7"/><circle cx="748" cy="502" r="8"/><circle cx="370" cy="120" r="7"/>
+  </g>
+  <g fill="#0b0f19" stroke="#f3f4f6" stroke-opacity=".7" stroke-width="4">
+    <circle cx="325" cy="245" r="14"/><circle cx="444" cy="288" r="12"/><circle cx="550" cy="295" r="15"/>
+    <circle cx="330" cy="448" r="12"/><circle cx="524" cy="448" r="13"/>
+  </g>
+  <rect x="386" y="310" width="175" height="125" rx="28" fill="#111827" stroke="#ff5722" stroke-width="5"/>
+  <path d="M430 382h87M473 340v84" stroke="#f3f4f6" stroke-opacity=".82" stroke-width="7" stroke-linecap="round"/>
+</svg>
