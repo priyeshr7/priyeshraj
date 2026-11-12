@@ -4,7 +4,7 @@
 
 **Python developer building local-first AI, data products, and dependable cloud systems.**
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-660066?style=for-the-badge&logo=googlechrome&logoColor=white)](https://priyeshr7.github.io/priyeshraj/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=googlechrome&logoColor=white)](https://priyeshr7.github.io/priyeshraj/)
 [![GitHub](https://img.shields.io/badge/GitHub-13120F?style=for-the-badge&logo=github&logoColor=white)](https://github.com/priyeshr7)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/priyeshraj)
 
