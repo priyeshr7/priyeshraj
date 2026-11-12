@@ -213,7 +213,7 @@ const Index = () => {
 
         <section className="gallery-section" id="gallery">
           <div className="gallery-heading"><p className="eyebrow eyebrow--light"><span /> Field notes</p><h2>Places worth remembering.</h2><p>A small visual log from the road—one frame at a time.</p></div>
-          <div className="gallery-carousel" aria-roledescription="carousel" aria-label="Travel photographs">
+          <div className="gallery-carousel" aria-roledescription="carousel" aria-label="Travel photographs" tabIndex={0} onKeyDown={(event) => { if (event.key === "ArrowLeft") showPreviousSlide(); if (event.key === "ArrowRight") showNextSlide(); }}>
             <div className="gallery-viewport" onTouchStart={(event) => setTouchStart(event.touches[0].clientX)} onTouchEnd={(event) => handleTouchEnd(event.changedTouches[0].clientX)}>
               <div className="gallery-track" style={{ transform: `translateX(-${activeSlide * 100}%)` }}>
                 {galleryItems.map((item, index) => (
@@ -230,7 +230,6 @@ const Index = () => {
                 <button type="button" onClick={showNextSlide} disabled={galleryItems.length < 2} aria-label="Next photograph"><ChevronRight /></button>
               </div>
               <div className="gallery-progress" aria-label={`Photograph ${activeSlide + 1} of ${galleryItems.length}`}>
-                <span>{String(activeSlide + 1).padStart(2, "0")} / {String(galleryItems.length).padStart(2, "0")}</span>
                 <div className="gallery-dots">{galleryItems.map((item, index) => <button type="button" className={activeSlide === index ? "gallery-dot gallery-dot--active" : "gallery-dot"} onClick={() => setActiveSlide(index)} aria-label={`Show photograph ${index + 1}`} key={item.src} />)}</div>
               </div>
             </div>
