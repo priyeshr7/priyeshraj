@@ -111,7 +111,7 @@ const galleryItems: GalleryItem[] = [
   },
 ];
 
-const formatName = (name: string) => name.replace(/-+$/, "").replaceAll("_", " ").replaceAll("-", " ");
+const formatName = (name: string) => name.replace(/-+$/, "").replace(/[_-]/g, " ");
 const formatDate = (date: string) => new Intl.DateTimeFormat("en", { month: "short", year: "numeric" }).format(new Date(date));
 
 const Index = () => {

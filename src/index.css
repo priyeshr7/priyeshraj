@@ -1,8 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root { --ink:#13120f; --paper:#f3f0e8; --electric:#3157f5; --acid:#d9ff43; --muted:#68675f; --line:#cfccc1; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
@@ -140,6 +136,11 @@ footer>p { color:var(--muted); font:400 10px/1 "DM Mono",monospace; text-transfo
 .social-links a { width:39px; height:39px; display:grid; place-items:center; border:1px solid var(--line); border-radius:50%; transition:.2s; }
 .social-links svg { width:17px; }
 .social-links a:hover { color:white; background:var(--electric); border-color:var(--electric); }
+.not-found { min-height:100vh; display:grid; place-items:center; padding:24px; text-align:center; }
+.not-found>div { max-width:560px; }
+.not-found .eyebrow { justify-content:center; }
+.not-found h1 { margin:0; color:var(--electric); font-size:clamp(110px,24vw,240px); line-height:.8; letter-spacing:-.09em; }
+.not-found>div>p:not(.eyebrow) { margin:38px 0 28px; color:var(--muted); }
 .reveal { animation:rise .7s both; } .reveal--delay { animation-delay:.12s; }
 @keyframes rise { from { opacity:0; transform:translateY(20px); } }
 @keyframes blink { 50% { opacity:0; } }
