@@ -207,21 +207,9 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="project-console reveal reveal--delay">
-            <div className="console-bar"><span /><span /><span /><p>status.py</p></div>
-            <div className="console-body">
-              <p><b>01</b><span className="code-purple">focus</span> = [<span className="code-green">"AI"</span>, <span className="code-green">"cloud"</span>, <span className="code-green">"Security"</span>]</p>
-              <p><b>02</b><span className="code-purple">data</span> = [<span className="code-green">"Preprocess"</span>, <span className="code-green">"Pattern"</span>, <span className="code-green">"inference"</span>,<span className="code-green">"Eval"</span>]</p>
-              <p><b>03</b></p><p><b>04</b><span className="code-blue">def</span> <span className="code-yellow">build</span>(problem):</p>
-              <p><b>05</b>&nbsp;&nbsp;signals = data.<span className="code-yellow">understand</span>()</p>
-              <p><b>06</b>&nbsp;&nbsp;<span className="code-blue">return</span> cloud.<span className="code-yellow">ship</span>(signals)</p><p><b>07</b></p>
-              <p className="console-output"><b>›</b> Latest: {formatName(projects[0].name)}<span className="cursor" /></p>
-            </div>
-            <div className="console-footer">
-              <span>Building in public</span>
-              <a className="console-link" href={projects[0].html_url} target="_blank" rel="noreferrer" aria-label={`View ${formatName(projects[0].name)} on GitHub`}>View latest project <ArrowUpRight size={16} /></a>
-            </div>
-          </div>
+          <figure className="hero-portrait reveal reveal--delay">
+            <img src={`${import.meta.env.BASE_URL}assets/1p.jpeg`} alt="Priyesh Raj standing at a mountain viewpoint" />
+          </figure>
         </section>
 
         <section className="ticker" aria-label="Tools and technologies">

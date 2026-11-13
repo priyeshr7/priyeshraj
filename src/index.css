@@ -51,23 +51,10 @@ button { color: inherit; font: inherit; }
 .button--outline:hover { background: var(--surface); border-color: #4b5563; }
 .text-link, .all-work { display: inline-flex; align-items: center; gap: 7px; padding-bottom: 5px; color: var(--text); border-bottom: 1px solid var(--accent); font: 500 11px/1.2 "DM Mono", monospace; }
 
-.project-console { display: block; overflow: hidden; color: #e5e7eb; background: #080b12; border: 1px solid var(--line); border-top: 2px solid var(--accent); box-shadow: 0 28px 70px #00000066; }
-.console-bar { height: 47px; display: flex; align-items: center; gap: 7px; padding: 0 18px; background: #101622; border-bottom: 1px solid var(--line); }
-.console-bar > span { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.console-bar > span:nth-child(2), .console-bar > span:nth-child(3) { background: #4b5563; }
-.console-bar p { margin: 0 0 0 10px; color: #737d8e; font: 400 10px/1 "DM Mono", monospace; }
-.console-body { min-height: 330px; padding: 28px 24px; overflow: hidden; font: 400 12px/2 "DM Mono", monospace; }
-.console-body p { display: flex; margin: 0; white-space: nowrap; }
-.console-body b { min-width: 33px; color: #465063; font-weight: 400; user-select: none; }
-.code-purple, .code-yellow { color: var(--accent); }
-.code-green { color: #f3f4f6; }
-.code-blue { color: #aeb6c4; }
-.console-output { margin-top: 12px !important; color: #7f8999; }
-.cursor { width: 7px; height: 14px; margin: 5px 0 0 7px; background: var(--accent); animation: blink 1s steps(1) infinite; }
-.console-footer { min-height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; color: #818b9a; background: #101622; border-top: 1px solid var(--line); font: 500 9px/1 "DM Mono", monospace; text-transform: uppercase; letter-spacing: .09em; }
-.console-footer > span:first-child { color: var(--accent); }
-.console-link { min-height: 34px; display: inline-flex; align-items: center; gap: 7px; padding: 0 12px; color: var(--text); background: #ffffff08; border: 1px solid #3a4659; transition: color .2s, background .2s, border-color .2s, transform .2s; }
-.console-link:hover { color: var(--bg); background: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+.hero-portrait { width: min(100%, 520px); position: relative; justify-self: end; margin: 0; padding: 10px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 28px 70px #00000066; isolation: isolate; }
+.hero-portrait::before { content: ""; height: 3px; position: absolute; top: -1px; right: -1px; left: -1px; background: var(--accent); }
+.hero-portrait::after { content: ""; position: absolute; right: -26px; bottom: -26px; z-index: -1; width: 45%; height: 45%; background: var(--accent-soft); filter: blur(35px); }
+.hero-portrait img { width: 100%; display: block; aspect-ratio: 1 / 1; object-fit: cover; object-position: center; }
 
 .ticker { width: 100%; overflow: hidden; color: var(--muted); background: #0e1420; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .ticker-track { width: max-content; display: flex; padding: 16px 0; font: 500 10px/1 "DM Mono", monospace; letter-spacing: .14em; animation: ticker 80s linear infinite; }
@@ -196,12 +183,11 @@ footer > p { color: #6b7280; font: 400 9px/1 "DM Mono", monospace; text-transfor
 .reveal { animation: rise .7s both; }
 .reveal--delay { animation-delay: .12s; }
 @keyframes rise { from { opacity: 0; transform: translateY(20px); } }
-@keyframes blink { 50% { opacity: 0; } }
 @keyframes ticker { to { transform: translateX(-50%); } }
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; gap: 70px; padding-top: 70px; }
-  .project-console { width: min(620px, 100%); }
+  .hero-portrait { width: min(520px, 100%); justify-self: start; }
   .expertise-grid, .interest-grid { grid-template-columns: 1fr 1fr; }
   .credentials-section { grid-template-columns: 1fr; gap: 65px; }
   .credentials-intro { position: static; }
@@ -219,8 +205,7 @@ footer > p { color: #6b7280; font: 400 9px/1 "DM Mono", monospace; text-transfor
   .hero h1 { font-size: clamp(42px, 13vw, 58px); }
   .hero h2 { margin-top: 14px; font-size: clamp(19px, 6vw, 25px); }
   .hero-intro { font-size: 15px; }
-  .console-body { min-height: 270px; padding: 22px 14px; font-size: 9px; }
-  .console-footer { padding: 0 14px; font-size: 8px; }
+  .hero-portrait { padding: 7px; }
   .section-heading { align-items: start; flex-direction: column; margin-bottom: 40px; }
   .expertise-section { padding: 100px 0 20px; }
   .experience-section, .projects-section, .life-section { padding: 95px 0; }
