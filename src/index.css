@@ -39,7 +39,9 @@ button { color: inherit; font: inherit; }
 .hero h1 em { color: var(--accent); font-family: Georgia, serif; font-weight: 400; }
 .hero h2 { max-width: 650px; margin: 18px 0 0; color: #b8c0cd; font-size: clamp(20px, 2.25vw, 30px); line-height: 1.3; letter-spacing: -.035em; font-weight: 500; }
 .hero h2 em { color: #d2d7df; font-family: Georgia, serif; font-weight: 400; }
-.hero-intro { max-width: 620px; margin: 34px 0 0; color: var(--muted); font-size: 17px; line-height: 1.75; }
+.hero-greeting { margin: 32px 0 7px; color: var(--text); font-size: 17px; font-weight: 600; }
+.hero-intro { max-width: 620px; margin: 0; color: var(--text); font-size: 17px; line-height: 1.7; }
+.hero-supporting { max-width: 620px; margin: 4px 0 0; color: #7f8999; font-size: 16px; line-height: 1.7; }
 .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 13px; margin-top: 38px; }
 .button { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 21px; font-size: 12px; font-weight: 800; transition: transform .2s, background .2s, border-color .2s; }
 .button:hover { transform: translateY(-2px); }

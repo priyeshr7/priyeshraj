@@ -33,10 +33,10 @@ const certifications: Certification[] = [
 ];
 
 const interests = [
-  { icon: Trophy, label: "Chess", detail: "Strategy, patience, and finding the move that changes the position." },
-  { icon: Flag, label: "Formula 1", detail: "Following the racing, engineering, team calls, and every shifting storyline." },
-  { icon: Newspaper, label: "Tech & trends", detail: "Keeping up with what is changing across cloud, AI, security, and software." },
-  { icon: Plane, label: "Travel", detail: "New places, long views, and photographs worth bringing back." },
+  { icon: Trophy, label: "Chess", detail: "Strategy, patience, and finding the move that changes the position.", image: "assets/interest-chess.jpeg", variant: "chess" },
+  { icon: Flag, label: "Formula 1", detail: "Following the racing, engineering, team calls, and every shifting storyline.", image: "assets/interest-f1-clean.png", variant: "f1" },
+  { icon: Newspaper, label: "Tech & trends", detail: "Keeping up with what is changing across cloud, AI, security, and software.", image: "assets/interest-tech.svg", variant: "tech" },
+  { icon: Plane, label: "Travel", detail: "New places, long views, and photographs worth bringing back.", image: "assets/interest-travel.jpeg", variant: "travel" },
 ];
 
 const skillGroups = [
@@ -89,16 +89,16 @@ const Index = () => {
             <p className="eyebrow"><span /> AI · Cloud · Security · Inference</p>
             <h1>Cloud security engineer <em> I turn noise into signal.</em> </h1>
             <h2>Making the cloud harder to break and easier to <em>trust</em>.</h2>
-            <p className="hero-intro">Hi there! 
-              Just a Classic Engineer , Jack of all stacks, master of some.
-Breadth finds the problem. Depth fixes it.</p>
+            <p className="hero-greeting">Hi there!</p>
+            <p className="hero-intro">Just a Classic Engineer , Jack of all stacks, master of some.</p>
+            <p className="hero-supporting">Breadth finds the problem. Depth fixes it.</p>
             <div className="hero-actions">
               <a className="button button--dark" href="#work">Explore my work <ArrowDown size={17} /></a>
               <a className="button button--outline" href={`${import.meta.env.BASE_URL}assets/priyesh-raj-cloud-security-resume.pdf`} target="_blank" rel="noreferrer">View resume <Download size={16} /></a>
             </div>
           </div>
 
-          <a className="project-console reveal reveal--delay" href={projects[0].html_url} target="_blank" rel="noreferrer" aria-label={`Open ${formatName(projects[0].name)} on GitHub`}>
+          <div className="project-console reveal reveal--delay">
             <div className="console-bar"><span /><span /><span /><p>priyesh.profile.py</p></div>
             <div className="console-body">
               <p><b>01</b><span className="code-purple">focus</span> = [<span className="code-green">"AI"</span>, <span className="code-green">"cloud"</span>, <span className="code-green">"Security"</span>]</p>
@@ -108,8 +108,11 @@ Breadth finds the problem. Depth fixes it.</p>
               <p><b>06</b>&nbsp;&nbsp;<span className="code-blue">return</span> cloud.<span className="code-yellow">ship</span>(signals)</p><p><b>07</b></p>
               <p className="console-output"><b>›</b> Latest: {formatName(projects[0].name)}<span className="cursor" /></p>
             </div>
-            <div className="console-footer"><span>Building in public</span><span className="console-link">View latest project <ArrowUpRight size={16} /></span></div>
-          </a>
+            <div className="console-footer">
+              <span>Building in public</span>
+              <a className="console-link" href={projects[0].html_url} target="_blank" rel="noreferrer" aria-label={`View ${formatName(projects[0].name)} on GitHub`}>View latest project <ArrowUpRight size={16} /></a>
+            </div>
+          </div>
         </section>
 
         <section className="ticker" aria-label="Focus areas"><div>AWS <span>✦</span> CLOUD ARCHITECTURE <span>✦</span> PYTHON <span>✦</span> DATA ANALYSIS <span>✦</span> MACHINE LEARNING <span>✦</span> INFERENCE <span>✦</span> AWS <span>✦</span> CLOUD ARCHITECTURE <span>✦</span> PYTHON <span>✦</span> DATA ANALYSIS <span>✦</span></div></section>
@@ -135,7 +138,7 @@ Breadth finds the problem. Depth fixes it.</p>
 
         <section className="life-section" id="life">
           <div className="section-heading"><div><p className="eyebrow"><span /> Off the clock</p><h2>A little more personal.</h2></div><p>Good work is only one part of a good life. These are the things that keep me curious.</p></div>
-          <div className="interest-grid">{interests.map(({ icon: Icon, label, detail }) => <article className="interest-card" key={label}><Icon /><h3>{label}</h3><p>{detail}</p></article>)}</div>
+          <div className="interest-grid">{interests.map(({ icon: Icon, label, detail, image, variant }) => <article className={`interest-card interest-card--${variant}`} key={label}><img className="interest-card__image" src={`${import.meta.env.BASE_URL}${image}`} alt="" loading="lazy" decoding="async" /><span className="interest-card__shade" aria-hidden="true" /><div className="interest-card__content"><span className="interest-card__icon"><Icon /></span><div><h3>{label}</h3><p>{detail}</p></div></div></article>)}</div>
         </section>
 
         <section className="gallery-section" id="gallery">
