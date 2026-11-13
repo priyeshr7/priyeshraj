@@ -47,6 +47,28 @@ const skillGroups = [
   { icon: BrainCircuit, title: "ML & inference", text: "Predictive models, RAG, generative AI , and inference workflows." },
 ];
 
+const experiences = [
+  {
+    role: "Cloud Engineer Intern",
+    company: "Mactores",
+    period: "Aug–Sept 2026",
+    highlights: [
+      "Evaluated AWS infrastructure using Well-Architected principles, with emphasis on IAM, network security, resilience, and resource optimization.",
+      "Researched practical uses of generative AI and automation in cloud operations, monitoring, and decision support.",
+      "Compared cloud services and architecture options, then documented findings for infrastructure planning.",
+    ],
+  },
+  {
+    role: "Salesforce Developer",
+    company: "SmartBridge",
+    period: "Jun–Jul 2025",
+    highlights: [
+      "Developed custom application logic with Apex and responsive interfaces with Lightning Web Components.",
+      "Built workflows and automations for business processes on Salesforce.",
+    ],
+  },
+];
+
 const tickerItems = [
   "AWS", "NumPy", "PyTorch", "LangChain", "LangGraph", "Python", "Scripting",
   "Nmap", "Burp Suite", "Terraform", "Docker", "Kubernetes", "Prometheus",
@@ -164,7 +186,7 @@ const Index = () => {
         <a className="wordmark" href="#top" aria-label="Priyesh Raj, home">PR<span>.</span></a>
         <button className="menu-button" type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X /> : <Menu />}</button>
         <nav className={menuOpen ? "nav-links nav-links--open" : "nav-links"} aria-label="Main navigation">
-          <a href="#work" onClick={closeMenu}>Work</a><a href="#credentials" onClick={closeMenu}>Credentials</a><a href="#life" onClick={closeMenu}>Life</a><a href="#gallery" onClick={closeMenu}>Gallery</a>
+          <a href="#work" onClick={closeMenu}>Work</a><a href="#projects" onClick={closeMenu}>Projects</a><a href="#credentials" onClick={closeMenu}>Credentials</a><a href="#life" onClick={closeMenu}>Life</a><a href="#gallery" onClick={closeMenu}>Gallery</a>
           <a className="nav-cta" href={`${import.meta.env.BASE_URL}assets/priyesh-raj-cloud-security-resume.pdf`} target="_blank" rel="noreferrer">Resume <Download size={15} /></a>
         </nav>
       </header>
@@ -213,8 +235,15 @@ const Index = () => {
           <div className="expertise-grid">{skillGroups.map(({ icon: Icon, title, text }, index) => <article className="expertise-card" key={title}><span>0{index + 1}</span><Icon /><h3>{title}</h3><p>{text}</p></article>)}</div>
         </section>
 
-        <section className="work-section" id="work">
-          <div className="section-heading"><div><p className="eyebrow"><span /> Selected work</p><h2>Recent projects, first.</h2></div><p>Built in public and ordered by the latest push on GitHub.</p></div>
+        <section className="experience-section" id="work" aria-labelledby="work-title">
+          <div className="section-heading"><div><p className="eyebrow"><span /> Work experience</p><h2 id="work-title">Professional experience.</h2></div><p>Cloud infrastructure, applied research, and platform development in real working environments.</p></div>
+          <div className="experience-list">
+            {experiences.map((experience, index) => <article className="experience-row" key={`${experience.company}-${experience.role}`}><div className="experience-meta"><span>0{index + 1}</span><time>{experience.period}</time></div><div className="experience-details"><p>{experience.company}</p><h3>{experience.role}</h3><ul>{experience.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul></div></article>)}
+          </div>
+        </section>
+
+        <section className="projects-section" id="projects" aria-labelledby="projects-title">
+          <div className="section-heading"><div><p className="eyebrow"><span /> Selected projects</p><h2 id="projects-title">Recent projects, first.</h2></div><p>Built in public and ordered by the latest push on GitHub.</p></div>
           <div className="project-list">{projects.map((project, index) => <a className="project-row" href={project.html_url} target="_blank" rel="noreferrer" key={project.name}><span className="project-number">0{index + 1}</span><div className="project-info"><div className="project-meta"><span>{project.language}</span><span>{formatDate(project.pushed_at)}</span></div><h3>{formatName(project.name)}</h3><p>{project.description}</p></div><span className="project-arrow"><ArrowUpRight /></span></a>)}</div>
           <a className="all-work" href="https://github.com/priyeshr7?tab=repositories" target="_blank" rel="noreferrer">Browse all repositories <ArrowUpRight size={17} /></a>
         </section>

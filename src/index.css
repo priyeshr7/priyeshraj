@@ -74,8 +74,8 @@ button { color: inherit; font: inherit; }
 .ticker-item { display: inline-flex; align-items: center; white-space: nowrap; }
 .ticker-item::after { content: "✦"; padding: 0 28px; color: var(--accent); }
 
-.expertise-section, .work-section, .life-section { width: min(1240px, calc(100% - 48px)); margin: auto; padding: 140px 0 20px; }
-.work-section { padding-bottom: 140px; }
+.expertise-section, .experience-section, .projects-section, .life-section { width: min(1240px, calc(100% - 48px)); margin: auto; padding: 140px 0 20px; }
+.projects-section { padding-top: 120px; padding-bottom: 140px; }
 .life-section { padding-bottom: 140px; }
 .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 62px; }
 .section-heading h2, .credentials-section h2, .gallery-section h2, .contact-section h2 { margin: 0; font-size: clamp(42px, 5vw, 68px); line-height: 1; letter-spacing: -.055em; }
@@ -88,6 +88,17 @@ button { color: inherit; font: inherit; }
 .expertise-card svg { width: 28px; height: 28px; margin-top: 58px; color: var(--accent); }
 .expertise-card h3 { margin: 24px 0 10px; font-size: 19px; letter-spacing: -.025em; }
 .expertise-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
+
+.experience-list { border-top: 1px solid var(--line); }
+.experience-row { display: grid; grid-template-columns: 190px 1fr; gap: 54px; padding: 42px 0; border-bottom: 1px solid var(--line); }
+.experience-meta { display: flex; flex-direction: column; gap: 22px; }
+.experience-meta > span { color: var(--accent); font: 500 10px/1 "DM Mono", monospace; }
+.experience-meta time { color: #7f8999; font: 500 10px/1.5 "DM Mono", monospace; text-transform: uppercase; letter-spacing: .08em; }
+.experience-details > p { margin: 0 0 10px; color: var(--accent); font: 500 10px/1 "DM Mono", monospace; text-transform: uppercase; letter-spacing: .1em; }
+.experience-details h3 { margin: 0; font-size: clamp(27px, 3vw, 38px); line-height: 1.1; letter-spacing: -.045em; }
+.experience-details ul { max-width: 860px; display: grid; gap: 11px; margin: 25px 0 0; padding: 0; list-style: none; }
+.experience-details li { position: relative; padding-left: 21px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.experience-details li::before { content: ""; width: 6px; height: 6px; position: absolute; top: .65em; left: 0; background: var(--accent); }
 
 .project-list { border-top: 1px solid var(--line); }
 .project-row { display: grid; grid-template-columns: 70px 1fr 48px; gap: 24px; padding: 35px 0; border-bottom: 1px solid var(--line); transition: padding .2s, background .2s, box-shadow .2s; }
@@ -198,7 +209,7 @@ footer > p { color: #6b7280; font: 400 9px/1 "DM Mono", monospace; text-transfor
 }
 
 @media (max-width: 650px) {
-  .nav-wrap, .section-grid, .expertise-section, .work-section, .life-section, .contact-section { width: min(100% - 32px, 1240px); }
+  .nav-wrap, .section-grid, .expertise-section, .experience-section, .projects-section, .life-section, .contact-section { width: min(100% - 32px, 1240px); }
   .nav-wrap { height: 72px; }
   .menu-button { display: block; }
   .nav-links { display: none; position: absolute; top: 72px; left: -16px; right: -16px; padding: 25px; flex-direction: column; align-items: stretch; gap: 22px; background: #0b0f19f5; border-bottom: 1px solid var(--line); backdrop-filter: blur(16px); }
@@ -212,10 +223,12 @@ footer > p { color: #6b7280; font: 400 9px/1 "DM Mono", monospace; text-transfor
   .console-footer { padding: 0 14px; font-size: 8px; }
   .section-heading { align-items: start; flex-direction: column; margin-bottom: 40px; }
   .expertise-section { padding: 100px 0 20px; }
-  .work-section, .life-section { padding: 95px 0; }
+  .experience-section, .projects-section, .life-section { padding: 95px 0; }
   .expertise-grid, .interest-grid { grid-template-columns: 1fr; }
   .expertise-card { min-height: 240px; }
   .expertise-card svg { margin-top: 40px; }
+  .experience-row { grid-template-columns: 1fr; gap: 25px; padding: 34px 0; }
+  .experience-meta { flex-direction: row; align-items: center; justify-content: space-between; gap: 20px; }
   .project-row { grid-template-columns: 35px 1fr; gap: 12px; }
   .project-arrow { display: none; }
   .project-info h3 { font-size: 25px; }
