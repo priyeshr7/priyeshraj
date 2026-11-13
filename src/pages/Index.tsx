@@ -208,7 +208,9 @@ const Index = () => {
           </div>
 
           <figure className="hero-portrait reveal reveal--delay">
-            <img src={`${import.meta.env.BASE_URL}assets/1p.jpeg`} alt="Priyesh Raj standing at a mountain viewpoint" />
+            <div className="hero-portrait__frame">
+              <img src={`${import.meta.env.BASE_URL}assets/1p.jpeg`} alt="Priyesh Raj at a mountain viewpoint" />
+            </div>
           </figure>
         </section>
 

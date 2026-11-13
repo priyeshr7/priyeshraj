@@ -51,10 +51,14 @@ button { color: inherit; font: inherit; }
 .button--outline:hover { background: var(--surface); border-color: #4b5563; }
 .text-link, .all-work { display: inline-flex; align-items: center; gap: 7px; padding-bottom: 5px; color: var(--text); border-bottom: 1px solid var(--accent); font: 500 11px/1.2 "DM Mono", monospace; }
 
-.hero-portrait { width: min(100%, 520px); position: relative; justify-self: end; margin: 0; padding: 10px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 28px 70px #00000066; isolation: isolate; }
-.hero-portrait::before { content: ""; height: 3px; position: absolute; top: -1px; right: -1px; left: -1px; background: var(--accent); }
-.hero-portrait::after { content: ""; position: absolute; right: -26px; bottom: -26px; z-index: -1; width: 45%; height: 45%; background: var(--accent-soft); filter: blur(35px); }
-.hero-portrait img { width: 100%; display: block; aspect-ratio: 1 / 1; object-fit: cover; object-position: center; }
+.hero-portrait { width: min(100%, 470px); aspect-ratio: 1; position: relative; justify-self: end; display: grid; place-items: center; margin: 0; isolation: isolate; }
+.hero-portrait::before { content: ""; position: absolute; inset: -12px; z-index: -1; border: 1px solid #ff572270; border-radius: 50%; box-shadow: 0 0 60px #ff57221c; }
+.hero-portrait::after { content: ""; position: absolute; inset: -25px; z-index: 2; border-radius: 50%; background: conic-gradient(from 24deg, transparent 0 9%, var(--accent) 9% 24%, transparent 24% 68%, #ffffff42 68% 69%, transparent 69% 100%); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 0); mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 0); pointer-events: none; transition: transform .45s ease; }
+.hero-portrait:hover::after { transform: rotate(12deg); }
+.hero-portrait__frame { width: 100%; height: 100%; position: relative; overflow: hidden; background: var(--surface); border: 9px solid var(--surface-raised); border-radius: 50%; box-shadow: 0 30px 80px #00000080, inset 0 0 0 1px #ffffff1c; }
+.hero-portrait__frame::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 -55px 80px #0b0f1942; pointer-events: none; }
+.hero-portrait img { width: 140%; height: 140%; max-width: none; position: absolute; top: 70%; left: 50%; display: block; object-fit: cover; transform: translate(-50%, -50%); transition: filter .3s ease, transform .45s ease; }
+.hero-portrait:hover img { filter: saturate(1.06) contrast(1.02); transform: translate(-50%, -50%) scale(1.015); }
 
 .ticker { width: 100%; overflow: hidden; color: var(--muted); background: #0e1420; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .ticker-track { width: max-content; display: flex; padding: 16px 0; font: 500 10px/1 "DM Mono", monospace; letter-spacing: .14em; animation: ticker 80s linear infinite; }
@@ -187,7 +191,7 @@ footer > p { color: #6b7280; font: 400 9px/1 "DM Mono", monospace; text-transfor
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; gap: 70px; padding-top: 70px; }
-  .hero-portrait { width: min(520px, 100%); justify-self: start; }
+  .hero-portrait { width: min(470px, calc(100% - 28px)); justify-self: start; margin-left: 14px; }
   .expertise-grid, .interest-grid { grid-template-columns: 1fr 1fr; }
   .credentials-section { grid-template-columns: 1fr; gap: 65px; }
   .credentials-intro { position: static; }
@@ -205,7 +209,7 @@ footer > p { color: #6b7280; font: 400 9px/1 "DM Mono", monospace; text-transfor
   .hero h1 { font-size: clamp(42px, 13vw, 58px); }
   .hero h2 { margin-top: 14px; font-size: clamp(19px, 6vw, 25px); }
   .hero-intro { font-size: 15px; }
-  .hero-portrait { padding: 7px; }
+  .hero-portrait__frame { border-width: 7px; }
   .section-heading { align-items: start; flex-direction: column; margin-bottom: 40px; }
   .expertise-section { padding: 100px 0 20px; }
   .experience-section, .projects-section, .life-section { padding: 95px 0; }
