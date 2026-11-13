@@ -35,8 +35,10 @@ button { color: inherit; font: inherit; }
 .hero::before { content: ""; width: 420px; height: 420px; position: absolute; top: 5%; left: -18%; z-index: -1; border-radius: 50%; background: #ff57220d; filter: blur(80px); }
 .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 25px; color: var(--muted); font: 500 10px/1 "DM Mono", monospace; letter-spacing: .15em; text-transform: uppercase; }
 .eyebrow > span { width: 26px; height: 2px; background: var(--accent); }
-.hero h1 { max-width: 720px; margin: 0; font-size: clamp(58px, 7vw, 100px); line-height: .94; letter-spacing: -.075em; font-weight: 700; }
+.hero h1 { max-width: 720px; margin: 0; font-size: clamp(44px, 5.4vw, 76px); line-height: 1; letter-spacing: -.065em; font-weight: 700; }
 .hero h1 em { color: var(--accent); font-family: Georgia, serif; font-weight: 400; }
+.hero h2 { max-width: 650px; margin: 18px 0 0; color: #b8c0cd; font-size: clamp(20px, 2.25vw, 30px); line-height: 1.3; letter-spacing: -.035em; font-weight: 500; }
+.hero h2 em { color: #d2d7df; font-family: Georgia, serif; font-weight: 400; }
 .hero-intro { max-width: 620px; margin: 34px 0 0; color: var(--muted); font-size: 17px; line-height: 1.75; }
 .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 13px; margin-top: 38px; }
 .button { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 21px; font-size: 12px; font-weight: 800; transition: transform .2s, background .2s, border-color .2s; }
@@ -47,8 +49,7 @@ button { color: inherit; font: inherit; }
 .button--outline:hover { background: var(--surface); border-color: #4b5563; }
 .text-link, .all-work { display: inline-flex; align-items: center; gap: 7px; padding-bottom: 5px; color: var(--text); border-bottom: 1px solid var(--accent); font: 500 11px/1.2 "DM Mono", monospace; }
 
-.project-console { display: block; overflow: hidden; color: #e5e7eb; background: #080b12; border: 1px solid var(--line); border-top: 2px solid var(--accent); box-shadow: 0 28px 70px #00000066; transition: transform .25s, border-color .25s; }
-.project-console:hover { transform: translateY(-5px); border-color: #ff572280; }
+.project-console { display: block; overflow: hidden; color: #e5e7eb; background: #080b12; border: 1px solid var(--line); border-top: 2px solid var(--accent); box-shadow: 0 28px 70px #00000066; }
 .console-bar { height: 47px; display: flex; align-items: center; gap: 7px; padding: 0 18px; background: #101622; border-bottom: 1px solid var(--line); }
 .console-bar > span { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 .console-bar > span:nth-child(2), .console-bar > span:nth-child(3) { background: #4b5563; }
@@ -63,7 +64,8 @@ button { color: inherit; font: inherit; }
 .cursor { width: 7px; height: 14px; margin: 5px 0 0 7px; background: var(--accent); animation: blink 1s steps(1) infinite; }
 .console-footer { min-height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; color: #818b9a; background: #101622; border-top: 1px solid var(--line); font: 500 9px/1 "DM Mono", monospace; text-transform: uppercase; letter-spacing: .09em; }
 .console-footer > span:first-child { color: var(--accent); }
-.console-link { display: flex; align-items: center; gap: 6px; }
+.console-link { min-height: 34px; display: inline-flex; align-items: center; gap: 7px; padding: 0 12px; color: var(--text); background: #ffffff08; border: 1px solid #3a4659; transition: color .2s, background .2s, border-color .2s, transform .2s; }
+.console-link:hover { color: var(--bg); background: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
 
 .ticker { width: 100%; overflow: hidden; color: var(--muted); background: #0e1420; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .ticker div { width: max-content; padding: 16px 0; font: 500 10px/1 "DM Mono", monospace; letter-spacing: .14em; animation: ticker 28s linear infinite; }
@@ -200,7 +202,8 @@ footer > p { color: #6b7280; font: 400 9px/1 "DM Mono", monospace; text-transfor
   .nav-links--open { display: flex; }
   .nav-cta { justify-content: center; }
   .hero { min-height: 0; padding: 70px 0 90px; }
-  .hero h1 { font-size: clamp(50px, 16vw, 72px); }
+  .hero h1 { font-size: clamp(42px, 13vw, 58px); }
+  .hero h2 { margin-top: 14px; font-size: clamp(19px, 6vw, 25px); }
   .hero-intro { font-size: 15px; }
   .console-body { min-height: 270px; padding: 22px 14px; font-size: 9px; }
   .console-footer { padding: 0 14px; font-size: 8px; }
