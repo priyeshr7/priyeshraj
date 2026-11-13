@@ -70,8 +70,9 @@ button { color: inherit; font: inherit; }
 .console-link:hover { color: var(--bg); background: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
 
 .ticker { width: 100%; overflow: hidden; color: var(--muted); background: #0e1420; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.ticker div { width: max-content; padding: 16px 0; font: 500 10px/1 "DM Mono", monospace; letter-spacing: .14em; animation: ticker 28s linear infinite; }
-.ticker span { padding: 0 28px; color: var(--accent); }
+.ticker-track { width: max-content; display: flex; padding: 16px 0; font: 500 10px/1 "DM Mono", monospace; letter-spacing: .14em; animation: ticker 80s linear infinite; }
+.ticker-item { display: inline-flex; align-items: center; white-space: nowrap; }
+.ticker-item::after { content: "✦"; padding: 0 28px; color: var(--accent); }
 
 .expertise-section, .work-section, .life-section { width: min(1240px, calc(100% - 48px)); margin: auto; padding: 140px 0 20px; }
 .work-section { padding-bottom: 140px; }
