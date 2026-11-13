@@ -87,7 +87,8 @@ const Index = () => {
         <section className="hero section-grid">
           <div className="hero-copy reveal">
             <p className="eyebrow"><span /> AI · Cloud · Security </p>
-            <h1>Cloud security engineer. I turn <em>  noise </em> into <em> signal.</em> </h1>
+            <h1>Cloud security engineer
+              I turn <em>  noise </em> into <em> signal.</em> </h1>
             <h2>Making the cloud harder to break and easier to <em>trust</em>.</h2>
             <p className="hero-intro">Hi there! 
               Just a Classic Engineer , Jack of all stacks, master of some.
